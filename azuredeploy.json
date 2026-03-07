@@ -16,7 +16,7 @@
             "name": "[parameters('storageName')]",
             "location": "centralus",
             "sku": {
-                "name": "Standard_LRS"
+                "name": "Standard_ZRS"
             },
             "kind": "StorageV2",
             "properties": {
