@@ -1,16 +1,15 @@
-name: Deploy Bicep to Azure
+name: Deploy ARM Template
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: # Allows you to run the workflow manually from GitHub
 
 permissions:
-  id-token: write  
+  id-token: write
   contents: read
 
 jobs:
-  deploy-infrastructure:
+  deploy-arm-template:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -23,11 +22,10 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      # This step takes your Bicep file and deploys it to Azure
-      - name: Deploy Bicep File
+      - name: Deploy ARM Template
         uses: azure/arm-deploy@v2
         with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          resourceGroupName: "YourResourceGroupName" # Replace with your actual Resource Group name
-          template: ./main.bicep
+          resourceGroupName: "ResourceofJoy" # Replace with your actual Resource Group name
+          template: ./azuredeploy.json
+          parameters: storageAccountName="mystorageacct2026xyz" # Must be globally unique!
           failOnStdErr: false
