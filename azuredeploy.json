@@ -28,7 +28,7 @@
       },
       "kind": "StorageV2",
       "properties": {
-        "accessTier": "Hot"
+        "accessTier": "Cool"
       }
     }
   ]
